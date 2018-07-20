@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot - Hibernate</title>
+<meta charset="utf-8">
+</head>
+<body>
+  <a th:href="@{/customer-list}">Danh sách khách hàng</a><br />
+  <h1>Sửa thông tin:</h1>
+  <form th:action="@{/updateCustomer}" method="POST" th:object="${customer}">
+      Id: <input th:field="*{id}" readonly="true" /> <br/> <br/>
+      Tên: <input th:field="*{name}"/> <br/> <br/>
+      Địa chỉ: <input th:field="*{address}"/> <br/> <br/>
+      Số điện thoại: <input th:field="*{phone}"/> <br/> <br/>
+    <input type="submit" value="Lưu" />
+  </form>
+</body>
+</html>

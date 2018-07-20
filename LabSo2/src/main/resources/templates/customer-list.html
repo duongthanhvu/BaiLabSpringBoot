@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot - Hibernate</title>
+<style>
+table, th, td, tr {
+	border: 1px solid black;
+}
+
+td {
+	padding-right: 30px;
+}
+</style>
+</head>
+<body>
+	<h1>Danh sách khách hàng:</h1>
+	<a th:href="@{/customer-save}">Thêm khách hàng</a>
+	<br />
+	<br />
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Tên</th>
+			<th>Địa chỉ</th>
+			<th>Số điện thoại</th>
+			<th>Xem</th>
+			<th>Sửa</th>
+			<th>Xóa</th>
+		</tr>
+		<th:block th:each="customer : ${listCustomer}">
+			<tr>
+				<td><p th:text="${customer.id}"></p></td>
+				<td><p th:text="${customer.name}"></p></td>
+				<td><p th:text="${customer.address}"></p></td>
+				<td><p th:text="${customer.phone}"></p></td>
+				<td><a th:href="@{/customer-view/} + ${customer.id}">Xem</a></td>
+				<td><a th:href="@{/customer-update/} + ${customer.id}">Sửa</a></td>
+				<td><a th:href="@{/customerDelete/} + ${customer.id}">Xóa</a></td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>
