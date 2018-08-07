@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Danh sách sản phầm</title>
+<script type="text/javascript">
+	function addtocart(id) {
+		var quantity = parseInt(document.getElementById("numberOP").innerHTML);
+		var request = new XMLHttpRequest;
+		request.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200 && this.responseText == 'success') {
+				document.getElementById("numberOP").innerHTML = quantity+1;
+			}
+		}
+		request.open("GET", "/addtocart/" + id, true);
+		request.send();
+	}
+</script>
+</head>
+<body>
+	<h2>Danh sách sản phẩm</h2>
+	<h3>
+		<a th:href="@{/show-cart}">Giỏ hàng (<span id="numberOP" th:text="${quantity}">0</span>)
+		</a>
+	</h3>
+	<table border="2">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Tên sản phẩm</th>
+				<th>Số lượng</th>
+				<th>Giá thành</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${products}">
+				<td th:text="${product.id}"></td>
+				<td th:text="${product.tenSP}"></td>
+				<td th:text="${product.soLuong}"></td>
+				<td th:text="${product.gia}"></td>
+				<td><button th:onclick="${'javascript:addtocart(' + product.id + ')'}">Thêm vào
+						giỏ</button></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

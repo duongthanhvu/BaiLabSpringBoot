@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Giỏ hàng</title>
+<script type="text/javascript">
+	function removefromcart(id, quantity) {
+		var request = new XMLHttpRequest;
+		request.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200
+					&& this.responseText == 'success') {
+				document.getElementById(id).remove();
+			}
+		}
+		request.open("GET", "/removefromcart/" + id + "/" + quantity, true);
+		request.send();
+	}
+</script>
+</head>
+<body>
+	<h2>Giỏ hàng</h2>
+	<h4><a th:href="@{/}">Danh sách sản phẩm</a></h4>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Tên sản phẩm</th>
+				<th>Số lượng</th>
+				<th>Tổng giá</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${products}" th:id="${product.id}">
+				<td th:text="${product.id}"></td>
+				<td th:text="${product.tenSP}"></td>
+				<td th:text="${product.soLuong}"></td>
+				<td th:text="${product.gia} * ${product.soLuong}"></td>
+				<td><button
+						th:onclick="${'javascript:removefromcart(' + product.id + ',' + product.soLuong + ')'}">Bỏ
+						khỏi giỏ</button></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
