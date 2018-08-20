@@ -20,7 +20,7 @@
 <body>
 	<h2>Danh sách sản phẩm</h2>
 	<h3>
-		<a th:href="@{/show-cart}">Giỏ hàng (<span id="numberOP" th:text="${quantity}">0</span>)
+		<a th:href="@{/show-cart}">Giỏ hàng (<span id="numberOP" th:text="${quantity} == null ? '0' : ${quantity}">0</span>)
 		</a>
 	</h3>
 	<table border="2">

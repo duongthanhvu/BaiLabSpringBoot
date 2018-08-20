@@ -40,6 +40,12 @@
 						th:onclick="${'javascript:removefromcart(' + product.id + ',' + product.soLuong + ')'}">Bỏ
 						khỏi giỏ</button></td>
 			</tr>
+			<!--
+			<tr>
+				<td colspan="3">Tổng cộng: </td>
+				<td th:text="${#aggregates.sum(products.![soLuong*gia])}">0</td>
+			</tr>
+			-->
 		</tbody>
 	</table>
 </body>
